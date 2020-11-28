@@ -1,4 +1,8 @@
 const timeout = 5000;
+const colorPicker = new iro.ColorPicker('#picker', {
+    width: 200
+});
+
 window.onload = function () {
     const socket = io();
     socket.on('start', function (grid) {
@@ -34,7 +38,7 @@ function SetVals(x, y) {
 
 async function PostColor(btn) {
     let col = document.querySelector('input[type="color"]')
-    let color = col.value
+    let color = colorPicker.color.hexString//col.value
     console.log(color)
 
     let postdata = {
@@ -61,3 +65,5 @@ async function PostColor(btn) {
         btn.disabled = false;
     }, timeout)
 }
+
+
