@@ -1,6 +1,5 @@
+const timeout = 5000;
 window.onload = function () {
-
-
     const socket = io();
     socket.on('start', function (grid) {
         Start(grid)
@@ -60,5 +59,5 @@ async function PostColor(btn) {
 
     setTimeout(() => {
         btn.disabled = false;
-    }, 5000)
+    }, timeout)
 }
