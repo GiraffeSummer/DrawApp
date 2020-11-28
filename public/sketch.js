@@ -1,8 +1,8 @@
 
 let settings
-let canvas 
+let canvas
 
-function setup() {}
+function setup() { }
 
 function Start(data) {
   settings = data.settings;
@@ -11,7 +11,16 @@ function Start(data) {
   DrawGrid(data.grid)
 }
 
-function Save(){
+function mouseClicked() {
+  let x;
+  let y;
+  x = Math.floor(mouseX / settings.scale);
+  y = Math.floor(mouseY / settings.scale);
+  if (x >= 0 && y >= 0)
+    SetVals(x, y)
+}
+
+function Save() {
   saveCanvas();
 }
 

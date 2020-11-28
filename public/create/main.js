@@ -25,6 +25,14 @@ function pageSetup() {
     yNum.max = settings.size
 }
 
+function SetVals(x, y) {
+    let xNum = document.getElementById("x")
+    let yNum = document.getElementById("y")
+
+    xNum.valueAsNumber = x;
+    yNum.valueAsNumber = y;
+}
+
 async function PostColor(btn) {
     let col = document.querySelector('input[type="color"]')
     let color = col.value
