@@ -5,6 +5,7 @@ let canvas
 function setup() { }
 
 function Start(data) {
+  if (typeof canClickPixel === 'undefined') canClickPixel = false;
   settings = data.settings;
   canvas = createCanvas(settings.size * settings.scale, settings.size * settings.scale);
 
@@ -12,6 +13,7 @@ function Start(data) {
 }
 
 function mouseClicked() {
+  if (!canClickPixel) return;
   let x;
   let y;
   x = Math.floor(mouseX / settings.scale);
