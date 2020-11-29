@@ -17,9 +17,9 @@ function mouseClicked() {
   let x = Math.floor(mouseX / settings.scale);
   let y = Math.floor(mouseY / settings.scale);
 
-  if (x >= 0 && y >= 0 && x < settings.scale && y < settings.scale) {
+  if (x >= 0 && y >= 0 && mouseX <= width && mouseY <= height) {
     if (colorDropper.checked) {
-      let pix =   globalGrid.find(g => { return (g.x === x && g.y === y) })
+      let pix = globalGrid.find(g => { return (g.x === x && g.y === y) })
       if (pix) {
         colorPicker.color.hexString = pix.color;
         colorDropper.checked = false;
