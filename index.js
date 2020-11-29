@@ -74,16 +74,6 @@ http.listen(port, async () => {
         }
     }
     else {
-        pixels.find({}).then((docs) => {
-            docs.forEach(e => {
-                let x = parseInt(e.x)
-                let y = parseInt(e.y)
-                pixels.update({ _id: e._id }, { $set: { x: x, y: y } }).then(d=>{
-                    console.log(d)
-                })
-            });
-        })
-
         pixels.find({}, { fields: { _id: 0 } }).then((docs) => {
             grid = docs;
             io.emit('start', { grid: grid, settings: settings });
