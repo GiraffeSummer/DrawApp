@@ -107,6 +107,7 @@ function UpdateGrid(x, y, c) {
     let index = grid.findIndex(g => {
         if (g.x == x && g.y == y) return g
     })
+    console.log("trying update")
     if (index > -1) {
         grid[index].color = c;
         pixels.findOneAndUpdate({ x: x, y: y }, { $set: { color: c } }).then((updatedDoc) => {
