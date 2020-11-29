@@ -74,6 +74,14 @@ http.listen(port, async () => {
         }
     }
     else {
+        pixels.find({}).then((docs) => {
+            docs.forEach(e => {
+                let x = parseInt(e.x)
+                let y = parseInt(e.y)
+                pixels.update({ _id: e._id }, { x: x, y: y })
+            });
+        })
+
         pixels.find({}, { fields: { _id: 0 } }).then((docs) => {
             grid = docs;
             io.emit('start', { grid: grid, settings: settings });
@@ -109,11 +117,7 @@ function UpdateGrid(x, y, c) {
     })
     if (index > -1) {
         grid[index].color = c;
-        console.log({ "x": x, "y": y })
-        pixels.findOneAndUpdate({ "x": x, "y": y }, { $set: { "color": c } }).then((ab) => {
-            console.log("trying update ")
-            console.log(ab)
-        })
+        pixels.findOneAndUpdate({ "x": x, "y": y }, { $set: { "color": c } }).then((ab) => { })
     }
     return (index > -1)
 }

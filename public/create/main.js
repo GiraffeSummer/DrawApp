@@ -1,6 +1,6 @@
 
 
-const timeout = 50;
+const timeout = 5000;
 const colorPicker = new iro.ColorPicker('#picker', {
     width: 200
 });
