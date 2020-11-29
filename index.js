@@ -109,9 +109,7 @@ function UpdateGrid(x, y, c) {
     })
     if (index > -1) {
         grid[index].color = c;
-        pixels.findOneAndUpdate({ "x": x, "y": y }, { $set: { "color": c } }).then((ab) => {
-            console.log(ab);
-         })
+        pixels.findOneAndUpdate({ "x": x, "y": y }, { $set: { "color": c } }).then((ab) => { })
     }
     return (index > -1)
 }
