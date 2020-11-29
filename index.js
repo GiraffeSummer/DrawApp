@@ -107,11 +107,11 @@ function UpdateGrid(x, y, c) {
     let index = grid.findIndex(g => {
         if (g.x == x && g.y == y) return g
     })
-    console.log("trying update " + index)
     if (index > -1) {
         grid[index].color = c;
         pixels.update({ x: x, y: y }, { $set: { color: c } }).then((a) => {
             
+            console.log("trying update " + a)
         })
     }
     return (index > -1)
