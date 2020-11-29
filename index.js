@@ -109,9 +109,9 @@ function UpdateGrid(x, y, c) {
     })
     if (index > -1) {
         grid[index].color = c;
-        pixels.update({ x: x, y: y }, { $set: { color: c } }).then((a) => {
-            
-            console.log("trying update " + a)
+        pixels.update({ x: x, y: y }, { $set: { color: c } }).then((ab) => {
+            console.log("trying update ")
+            console.log(ab)
         })
     }
     return (index > -1)
