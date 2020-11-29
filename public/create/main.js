@@ -89,7 +89,7 @@ async function PostColor(btn) {
         color: color
     }
 
-    console.log(postdata)
+   // console.log(postdata)
 
     if (!btn.disabled && true) {
         console.log("Sending")
@@ -99,7 +99,7 @@ async function PostColor(btn) {
             body: JSON.stringify(postdata)
         });
         let data = await resp.json();
-        console.log(data)
+       // console.log(data)
     }
     btn.disabled = true;
 
