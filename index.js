@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000
 
 const pixels = db.get('pixels')
 const updates = db.get('updates')
-//pixels.createIndexes('x y')
+pixels.createIndex('x y')
 
 const responses = {
     id: 0,
@@ -110,9 +110,9 @@ function UpdateGrid(x, y, c) {
     console.log("trying update " + index)
     if (index > -1) {
         grid[index].color = c;
-        pixels.findOneAndUpdate({ x: x, y: y }, { $set: { color: c } }).then((updatedDoc) => {
-            console.log("updated",updatedDoc);
-         })
+        pixels.update({ x: x, y: y }, { $set: { color: c } }).then((a) => {
+            
+        })
     }
     return (index > -1)
 }
