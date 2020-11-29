@@ -78,7 +78,9 @@ http.listen(port, async () => {
             docs.forEach(e => {
                 let x = parseInt(e.x)
                 let y = parseInt(e.y)
-                pixels.update({ _id: e._id }, { $set: { x: x, y: y } })
+                pixels.update({ _id: e._id }, { $set: { x: x, y: y } }).then(d=>{
+                    console.log(d)
+                })
             });
         })
 
