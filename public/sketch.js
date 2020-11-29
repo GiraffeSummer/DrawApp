@@ -9,17 +9,27 @@ function Start(data) {
   settings = data.settings;
   canvas = createCanvas(settings.size * settings.scale, settings.size * settings.scale);
 
+  console.log(data)
+
   DrawGrid(data.grid)
 }
 
 function mouseClicked() {
   if (!canClickPixel) return;
-  let x;
-  let y;
-  x = Math.floor(mouseX / settings.scale);
-  y = Math.floor(mouseY / settings.scale);
-  if (x >= 0 && y >= 0)
-    SetVals(x, y)
+  let x = Math.floor(mouseX / settings.scale);
+  let y = Math.floor(mouseY / settings.scale);
+
+  if (x >= 0 && y >= 0) {
+    if (colorDropper.checked) {
+      let pix =   globalGrid.find(g => { return (g.x === x && g.y === y) })
+      if (pix) {
+        colorPicker.color.hexString = pix.color;
+        colorDropper.checked = false;
+      }
+    } else {
+      SetVals(x, y)
+    }
+  }
 }
 
 function Save() {
@@ -27,6 +37,7 @@ function Save() {
 }
 
 function DrawGrid(grid) {
+  globalGrid = grid;
   for (let i = 0; i < grid.length - 1; i++) {
     let p = grid[i]
     noStroke();

@@ -9,15 +9,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>create</title>
+
     <style>
         canvas {
             margin-top: 20px;
             outline: 5px solid black;
             cursor: crosshair;
         }
-        #picker{
+
+        #picker {
             margin: 20px 20px;
         }
+
+        #colorInfo {
+
+            margin: 10px 5px;
+            height: 30px;
+        }
+
+        #colorHex {
+            width: 55px;
+        }
+
+        #colorBox {
+            height: 30px;
+            outline: 2px solid black;
+            width: 30px;
+            display: inline-block;
+        }
+
+      
     </style>
     <script src="main.js"></script>
     <link rel="icon" type="image/png" href="..//images/cover.png">
@@ -30,6 +51,12 @@
     <label for="y">Y</label>
     <input id="y" type="number" value="0" name="y" min="0" onblur="SetMax(this)">
 
+    <div id="colorInfo">
+        <div id="colorBox"></div>
+        <input type="text" id="colorHex">
+        <label for="colorDrop" >dropper tool</label>
+        <input type="checkbox" id="colorDrop" class="dropper-checkbox">
+    </div>
     <div id="picker"></div>
 
 

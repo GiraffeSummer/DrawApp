@@ -2,8 +2,15 @@
 
 const timeout = 5000;
 const colorPicker = new iro.ColorPicker('#picker', {
-    width: 200
+    width: 200,
+    layoutDirection: 'horizontal'
 });
+let colorBox;
+let colorInfo;
+const hexMatch = /^#([0-9A-F]{3}){1,2}$/i;
+let oldCol = "#ffffff";
+let colorDropper;
+let globalGrid;
 
 window.onload = function () {
     const socket = io();
@@ -15,6 +22,39 @@ window.onload = function () {
         console.log("content update")
         DrawGrid(grid)
     });
+    colorBox = document.getElementById("colorBox");
+    colorInfo = document.getElementById("colorHex");
+    colorDropper = document.getElementById("colorDrop");
+    colorDropper.checked = false;
+    colorPicker.on("color:change", (color) => {
+        colorBox.style.backgroundColor = color.hexString;
+        colorInfo.value = color.hexString;
+    });
+
+    colorInfo.addEventListener('onfocus', (e) => {
+        oldCol = e.target.value;
+    })
+
+    ColorInfoChange = (event) => {
+        let newCol = (event.target.value[0] == '#') ? event.target.value : `#${event.target.value}`;
+
+        if (!hexMatch.test(newCol)) {
+            event.target.value = oldCol
+        }
+
+        colorPicker.color.hexString = newCol;
+    }
+
+
+    colorInfo.addEventListener('blur', ColorInfoChange);
+    colorInfo.addEventListener('change', ColorInfoChange);
+
+    colorDropper.addEventListener('change', (e) => {
+        console.log("dropper " + (e.target.checked) ? "enabled" : "disabled")
+    });
+
+    colorPicker.color.hexString = "#ffffff";
+    colorInfo.value = colorPicker.color.hexString;
 }
 
 function SetMax(field) {
