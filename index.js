@@ -52,6 +52,9 @@ io.on('connection', (socket) => {
 });
 
 app.put('/', (req, res) => {
+
+    //spam prevention
+
     let stat = UpdateGrid(req.body.x, req.body.y, req.body.color)
     let ob = JSON.parse(JSON.stringify(responses.structure))
     ob.id = responses.id;
@@ -94,7 +97,7 @@ function CreateGrid() {
     let y = 0;
     for (let i = 0; i < settings.size * settings.size; i++) {
         grid[i] = new Pixel(x, y, "#ffffff");
-        if (x >= settings.size) {
+        if (x == settings.size - 1) {
             y++;
             x = 0;
         } else x++;

@@ -36,7 +36,9 @@ function Save() {
 
 function DrawGrid(grid) {
   globalGrid = grid;
-  for (let i = 0; i < grid.length - 1; i++) {
+  console.log(grid);
+
+  for (let i = 0; i < grid.length; i++) {
     let p = grid[i]
     noStroke();
     let c = color(p.color);
@@ -44,4 +46,3 @@ function DrawGrid(grid) {
     rect(p.x * settings.scale, p.y * settings.scale, settings.scale, settings.scale)
   }
 }
-

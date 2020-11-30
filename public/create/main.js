@@ -12,6 +12,19 @@ let oldCol = "#ffffff";
 let colorDropper;
 let globalGrid;
 
+const debug = {
+    _debug: false,
+    get val() { return this._debug },
+    get enable() {
+        this._debug = true;
+        return this._debug;
+    },
+    get disable() {
+        this._debug = false;
+        return this._debug;
+    }
+}
+
 window.onload = function () {
     const socket = io();
     socket.on('start', function (grid) {
@@ -89,7 +102,7 @@ async function PostColor(btn) {
         color: color
     }
 
-   // console.log(postdata)
+    if (debug.val) console.log(postdata)
 
     if (!btn.disabled && true) {
         console.log("Sending")
@@ -99,7 +112,7 @@ async function PostColor(btn) {
             body: JSON.stringify(postdata)
         });
         let data = await resp.json();
-       // console.log(data)
+        if (debug.val) console.log(data)
     }
     btn.disabled = true;
 
