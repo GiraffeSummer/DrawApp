@@ -36,7 +36,6 @@ function Save() {
 
 function DrawGrid(grid) {
   globalGrid = grid;
-  console.log(grid);
 
   for (let i = 0; i < grid.length; i++) {
     let p = grid[i]
