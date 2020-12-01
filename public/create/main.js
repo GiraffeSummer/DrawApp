@@ -11,6 +11,7 @@ const hexMatch = /^#([0-9A-F]{3}){1,2}$/i;
 let oldCol = "#ffffff";
 let colorDropper;
 let globalGrid;
+let _socketId;
 
 const debug = {
     _debug: false,
@@ -27,6 +28,7 @@ const debug = {
 
 window.onload = function () {
     const socket = io();
+
     socket.on('start', function (grid) {
         Start(grid)
         pageSetup(grid)
@@ -34,6 +36,9 @@ window.onload = function () {
     socket.on('update', function (grid) {
         console.log("content update")
         DrawGrid(grid)
+    });
+    socket.on("connect", () => {
+        _socketId = socket.id;
     });
     colorBox = document.getElementById("colorBox");
     colorInfo = document.getElementById("colorHex");
@@ -53,6 +58,8 @@ window.onload = function () {
 
         if (!hexMatch.test(newCol)) {
             event.target.value = oldCol
+        } else {
+            oldCol = newCol;
         }
 
         colorPicker.color.hexString = newCol;
@@ -99,7 +106,8 @@ async function PostColor(btn) {
     let postdata = {
         x: document.querySelector("#x").valueAsNumber.clamp(0, settings.size),
         y: document.querySelector("#y").valueAsNumber.clamp(0, settings.size),
-        color: color
+        color: color,
+        socket: _socketId,
     }
 
     if (debug.val) console.log(postdata)

@@ -19,7 +19,7 @@ const responses = {
     createnew: false,
     structure: {
         id: 0,
-        stat: true,
+        success: true,
         data: {}
     },
     list: []
@@ -52,18 +52,24 @@ io.on('connection', (socket) => {
 });
 
 app.put('/', (req, res) => {
+    let socketClient = req.body.socket
+    let clients = Array.from(io.sockets.sockets.keys());
 
     //spam prevention
-
-    let stat = UpdateGrid(req.body.x, req.body.y, req.body.color)
-    let ob = JSON.parse(JSON.stringify(responses.structure))
-    ob.id = responses.id;
-    ob.data = req.body;
-    responses.id++;
-    responses.list.push(ob);
-    updates.insert(ob);
-    io.emit('update', grid)
-    res.json(ob)
+    if (clients.includes(socketClient)) {
+        let stat = UpdateGrid(req.body.x, req.body.y, req.body.color)
+        let ob = JSON.parse(JSON.stringify(responses.structure))
+        ob.id = responses.id;
+        ob.data = req.body;
+        delete ob.data.socket;
+        responses.id++;
+        responses.list.push(ob);
+        updates.insert(ob)
+        io.emit('update', grid)
+        res.json(ob)
+    } else {
+        res.json({ success: false, reason: "Not a valid session" });
+    }
 })
 
 http.listen(port, async () => {
@@ -105,6 +111,7 @@ function CreateGrid() {
     return grid
 }
 function UpdateGrid(x, y, c) {
+    //implement promise
     x = x.clamp(0, settings.size)
     y = y.clamp(0, settings.size)
     let index = grid.findIndex(g => {
