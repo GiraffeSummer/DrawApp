@@ -3,7 +3,7 @@
 
 **Must Haves**
 - [x] add mongodb support (requests and art)
-- [x]  load last  instance
+- [x] load last  instance
 - [x] color picker tool (dropper)
 - [ ] rate limits
 - [ ] embedding an image (for the web devs)  (possible to work in <img>)
@@ -19,9 +19,9 @@
 
 **Cool later features**
 
-- [ ] maybe some cool data stuff, like most changed pixels and most used colours and stuff
-    +maybe some cool graphs
-    +for colour per square or something
+- [ ] maybe some cool data stuff, like most changed pixels and most used colours and stuff  
+    - maybe some cool graphs  
+    - for colour per square or something  
 
 **bugs**
 - [x] check artwork resetting
