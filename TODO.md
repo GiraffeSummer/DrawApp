@@ -10,12 +10,13 @@
 - [ ] embedding an image (for the web devs)  (possible to work in <img>)
 - [ ] Downloading image as png/jpg
 - [ ] different sessions (based on id or something) so multiple arts
-- [ ] check if updated correctly to DB (_UpdateGrid()_ function)
+- [ ] check if updated correctly to DB (_UpdateGrid()_ function) (promise)
 
 
 **Useful extras**
 - [ ] color history (5-10 last used colors)
 - [ ] discord embeds
+- [ ] information page
 
 
 **Cool later features**
