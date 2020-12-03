@@ -7,6 +7,7 @@ const { Pixel } = require('./classes')
 const app = express()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http);
+const serverRender = require('./serverRender')
 
 const port = process.env.PORT || 3000
 
@@ -33,10 +34,27 @@ const settings = {
     }
 }
 
+const sessions = {
+    sessions: [],
+
+    push: (o) => { this.sessions.push(o) },
+    new: () => {
+        return {
+            name: "",
+            id: "",
+            grid: {},
+            image: "base64",
+            imagePath: `./images/data/${this.id}.png`
+        }
+    }
+}
+
+app.set('view engine', 'ejs');
 app.use(express.static('public'))
 app.use(cors())
 app.use(bodyParser.json())
 
+let grid;
 
 app.get('/requests', (req, res) => {
     res.json(responses.list)
@@ -45,11 +63,21 @@ app.get('/requests', (req, res) => {
 app.get('/grid', (req, res) => {
     res.json(grid)
 })
-let grid;
 
 io.on('connection', (socket) => {
     io.emit('start', { grid: grid, settings: settings });
 });
+
+/*app.get('/test.png', (req, res) => {
+
+    let img = serverRender.RenderGrid(grid, settings)
+
+    const base64Data = img.replace(/^data:image\/png;base64,/, "");
+
+    fs.writeFile("./public/images/data/out.png", base64Data, 'base64', function (err) { });
+
+    res.render('test', { grid: grid, img: img, imgUrl: `https://da796a4a52f3.ngrok.io/images/data/out.png` });
+});*/
 
 app.put('/', (req, res) => {
     let socketClient = req.body.socket

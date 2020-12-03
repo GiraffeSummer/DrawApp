@@ -7,12 +7,22 @@
   <link rel="stylesheet" type="text/css" href="style.css">
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="./images/cover.png">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KC281TMRPY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-KC281TMRPY');
+  </script>
 </head>
 
 <body>
   <script src="classes.js"></script>
   <script src="sketch.js"></script>
   <script src="/socket.io/socket.io.js"></script>
+
   <script>
     const socket = io();
     socket.on('start', function (grid) {

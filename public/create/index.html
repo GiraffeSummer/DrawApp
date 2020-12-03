@@ -37,11 +37,18 @@
             width: 30px;
             display: inline-block;
         }
-
-      
     </style>
     <script src="main.js"></script>
     <link rel="icon" type="image/png" href="..//images/cover.png">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KC281TMRPY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-KC281TMRPY');
+    </script>
 </head>
 
 <body>
@@ -54,7 +61,7 @@
     <div id="colorInfo">
         <div id="colorBox"></div>
         <input type="text" id="colorHex">
-        <label for="colorDrop" >dropper tool</label>
+        <label for="colorDrop">dropper tool</label>
         <input type="checkbox" id="colorDrop" class="dropper-checkbox">
     </div>
     <div id="picker"></div>

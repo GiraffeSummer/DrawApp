@@ -7,16 +7,26 @@
 - [x] color picker tool (dropper)
 - [x] basic bot protection
 - [ ] rate limits
-- [ ] embedding an image (for the web devs)  (possible to work in <img>)
-- [ ] Downloading image as png/jpg
 - [ ] different sessions (based on id or something) so multiple arts
 - [ ] check if updated correctly to DB (_UpdateGrid()_ function) (promise)
 
 
+**Adjustments**
+- [ ] serverside image rendering 
+- [ ] cache images
+- [ ] serve static image instead on update
+
+
+
 **Useful extras**
 - [ ] color history (5-10 last used colors)
-- [ ] discord embeds
 - [ ] information page
+
+**Embedding**
+- [ ] Downloading image as png/jpg
+- [ ] discord embeds
+- [ ] embedding an image (for the web devs)  (possible to work in <img>)
+- [ ] use .png on route
 
 
 **Cool later features**
