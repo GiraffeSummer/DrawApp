@@ -69,7 +69,7 @@ io.on('connection', (socket) => {
     io.emit('start', { grid: grid, settings: settings });
 });
 
-app.get('/:id/image.png', (req, res) => {
+app.get('/image.png', (req, res) => {
 
     let img = serverRender.RenderGrid(grid, settings)
 
