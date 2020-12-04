@@ -8,6 +8,7 @@ const app = express()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http);
 const serverRender = require('./serverRender')
+const fs = require('fs')
 
 const port = process.env.PORT || 3000
 
@@ -68,7 +69,7 @@ io.on('connection', (socket) => {
     io.emit('start', { grid: grid, settings: settings });
 });
 
-/*app.get('/test.png', (req, res) => {
+app.get('/:id/image.png', (req, res) => {
 
     let img = serverRender.RenderGrid(grid, settings)
 
@@ -76,8 +77,8 @@ io.on('connection', (socket) => {
 
     fs.writeFile("./public/images/data/out.png", base64Data, 'base64', function (err) { });
 
-    res.render('test', { grid: grid, img: img, imgUrl: `https://da796a4a52f3.ngrok.io/images/data/out.png` });
-});*/
+    res.render('image', { /*grid: grid,*/ settings: settings, img: img, imgUrl: `https://27e846cb8695.ngrok.io/images/data/out.png` });
+});
 
 app.put('/', (req, res) => {
     let socketClient = req.body.socket
